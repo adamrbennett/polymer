@@ -1,0 +1,35 @@
+version: '2.1'
+
+services:
+
+  contact-list:
+    image: contact-list
+    build:
+      context: ./contact-list
+    ports:
+      - "3001:3000"
+
+  contact-item:
+    image: contact-item
+    build:
+      context: ./contact-item
+    ports:
+      - "3002:3000"
+
+  contact-dialog:
+    image: contact-dialog
+    build:
+      context: ./contact-dialog
+    ports:
+      - "3003:3000"
+
+  contact-app:
+    image: contact-app
+    build:
+      context: ./contact-app
+    ports:
+      - "3000:3000"
+    links:
+      - "contact-list"
+      - "contact-item"
+      - "contact-dialog"

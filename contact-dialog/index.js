@@ -12,5 +12,13 @@ app.use(express.static('bower_components'));
 app.use(express.static('.'));
 
 app.listen(port);
+process.on('SIGINT', close);
+process.on('SIGTERM', close);
 
-console.log("Listening at localhost:" + port);
+console.log(`Listening on port: ${port}`);
+
+function close() {
+  console.log('Shutting down');
+  server.close();
+  process.exit(0);
+}
